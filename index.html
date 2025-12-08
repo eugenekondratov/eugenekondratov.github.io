@@ -1,11 +1,1082 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Eugene Kondratov – Political Scientist</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eugene Kondratov | Political Scientist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1f;
+            --paper: #faf9f7;
+            --accent: #8b2635;
+            --muted: #6b6b73;
+            --line: #e5e4e1;
+            --highlight: #f0ebe3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 400;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        /* Subtle grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--paper);
+            border-bottom: 1px solid var(--line);
+            z-index: 100;
+            transition: box-shadow 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .hero-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-text h1 span {
+            display: block;
+            font-style: italic;
+            color: var(--accent);
+            font-size: 0.85em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--muted);
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .hero-affiliations {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .hero-affiliations span {
+            color: var(--muted);
+        }
+
+        .hero-affiliations strong {
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .hero-photo {
+            position: relative;
+        }
+
+        .hero-photo::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: -12px;
+            bottom: -12px;
+            border: 1px solid var(--accent);
+            opacity: 0.4;
+        }
+
+        .hero-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(15%);
+            position: relative;
+            z-index: 1;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, var(--highlight) 0%, var(--line) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .section-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* Research Section */
+        .research-intro {
+            font-size: 1.1rem;
+            max-width: 680px;
+            margin-bottom: 48px;
+            color: var(--ink);
+        }
+
+        .research-themes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .theme {
+            padding: 28px;
+            background: var(--highlight);
+            border-left: 3px solid var(--accent);
+        }
+
+        .theme h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .theme p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* Publications */
+        .publication {
+            padding: 32px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .publication:last-child {
+            border-bottom: none;
+        }
+
+        .pub-year {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .pub-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            line-height: 1.35;
+        }
+
+        .pub-title a {
+            color: var(--ink);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .pub-title a:hover {
+            color: var(--accent);
+        }
+
+        .pub-meta {
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        .pub-meta em {
+            font-style: italic;
+        }
+
+        .pub-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            letter-spacing: 0.05em;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        /* Working Papers */
+        .working-papers {
+            margin-top: 48px;
+            padding-top: 40px;
+            border-top: 1px solid var(--line);
+        }
+
+        .working-papers h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 24px;
+            color: var(--muted);
+        }
+
+        .wp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .wp-item {
+            font-size: 0.95rem;
+            padding-left: 16px;
+            border-left: 2px solid var(--line);
+        }
+
+        .wp-item strong {
+            font-weight: 500;
+        }
+
+        /* Policy & Impact */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+
+        .impact-category h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .impact-item {
+            margin-bottom: 24px;
+        }
+
+        .impact-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .impact-item p {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .impact-item a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .impact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Teaching Section */
+        .teaching-intro {
+            font-size: 1.05rem;
+            max-width: 680px;
+            margin-bottom: 40px;
+            color: var(--ink);
+        }
+
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .teaching-category h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: var(--ink);
+        }
+
+        .course-list {
+            list-style: none;
+        }
+
+        .course-list li {
+            font-size: 0.95rem;
+            color: var(--muted);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .course-list li:last-child {
+            border-bottom: none;
+        }
+
+        .training-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .training-item {
+            background: var(--highlight);
+            padding: 16px 20px;
+            font-size: 0.9rem;
+        }
+
+        .training-item strong {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--ink);
+        }
+
+        .training-item span {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        /* CV Section */
+        .cv-timeline {
+            position: relative;
+            padding-left: 140px;
+        }
+
+        .cv-entry {
+            position: relative;
+            padding-bottom: 40px;
+            padding-left: 32px;
+            border-left: 1px solid var(--line);
+        }
+
+        .cv-entry:last-child {
+            padding-bottom: 0;
+        }
+
+        .cv-entry::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 6px;
+            width: 9px;
+            height: 9px;
+            background: var(--paper);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+        }
+
+        .cv-date {
+            position: absolute;
+            left: -140px;
+            top: 0;
+            width: 100px;
+            text-align: right;
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .cv-entry h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .cv-entry p {
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 24px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .contact-links a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--accent);
+        }
+
+        .contact-links svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.7;
+        }
+
+        .contact-form {
+            margin-top: 24px;
+        }
+
+        .contact-form h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--muted);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--line);
+            background: white;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .form-submit:hover {
+            background: #6d1f2a;
+        }
+
+        .contact-quote {
+            padding: 32px;
+            background: var(--highlight);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: var(--ink);
+            align-self: start;
+        }
+
+        /* Footer */
+        footer.site-footer {
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .container {
+                padding: 0 24px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-photo {
+                max-width: 280px;
+                order: -1;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .research-themes {
+                grid-template-columns: 1fr;
+            }
+
+            .impact-grid,
+            .contact-grid,
+            .teaching-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .cv-timeline {
+                padding-left: 0;
+            }
+
+            .cv-date {
+                position: static;
+                text-align: left;
+                margin-bottom: 4px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text, .hero-photo {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        .hero-photo {
+            animation-delay: 0.2s;
+        }
+    </style>
 </head>
 <body>
-  <h1>Hello! Website is coming soon</h1>
-  <p>This will be my academic homepage.</p>
+    <nav>
+        <div class="container">
+            <a href="#" class="nav-name">Eugene Kondratov</a>
+            <div class="nav-links">
+                <a href="#research">Research</a>
+                <a href="#publications">Publications</a>
+                <a href="#impact">Policy</a>
+                <a href="#teaching">Teaching</a>
+                <a href="#cv">CV</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>
+                        Eugene Kondratov
+                        <span>Political Scientist</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Investigating how hybrid threats and disinformation fracture democratic societies—and how resilience can be built.
+                    </p>
+                    <div class="hero-affiliations">
+                        <div>
+                            <strong>Universitat Autònoma de Barcelona</strong>
+                            <span>· Department of Political Science</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-photo">
+                    <!-- Replace this div with: <img src="photo.jpg" alt="Eugene Kondratov"> -->
+                    <div class="photo-placeholder">
+                        [Your photo]<br><br>
+                        <em>Add: photo.jpg</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="research">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2>Research</h2>
+            </div>
+            
+            <p class="research-intro">
+                My research challenges traditional security paradigms by examining how disinformation and influence operations exploit the cognitive and emotional vulnerabilities of democratic societies. I employ multi-method approaches—combining comparative analysis, topic modeling, and network analysis—to understand how external hybrid threats interact with domestic polarization.
+            </p>
+
+            <div class="research-themes">
+                <div class="theme">
+                    <h3>Hybrid Interference</h3>
+                    <p>Comparative analysis of Russian influence campaigns across France, Germany, the UK, and the United States.</p>
+                </div>
+                <div class="theme">
+                    <h3>Emotional Weaponization</h3>
+                    <p>How state actors exploit racial and identity-based grievances to deepen societal fissures through targeted manipulation.</p>
+                </div>
+                <div class="theme">
+                    <h3>Narrative Resilience</h3>
+                    <p>Developing frameworks for understanding and strengthening community-based resistance to disinformation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2>Publications</h2>
+            </div>
+
+            <div class="publications-list">
+                <article class="publication">
+                    <div class="pub-year">2024</div>
+                    <h3 class="pub-title">
+                        <a href="https://doi.org/10.1080/13569775.2024.2307096" target="_blank">
+                            Behind the Screens: Russian Emotional Manipulation Strategies Against Black Americans on Social Media
+                        </a>
+                    </h3>
+                    <p class="pub-meta">
+                        <em>Contemporary Politics</em>, 30(3), 383–403
+                        <span class="pub-badge">Q1</span>
+                        <span class="pub-badge">SOLE AUTHOR</span>
+                    </p>
+                </article>
+
+                <article class="publication">
+                    <div class="pub-year">2022</div>
+                    <h3 class="pub-title">
+                        <a href="https://doi.org/10.1080/14650045.2022.2129012" target="_blank">
+                            Russia's Hybrid Interference Campaigns in France, Germany, and the UK: A Challenge Against Trust in Liberal Democracies?
+                        </a>
+                    </h3>
+                    <p class="pub-meta">
+                        With E. Johansson-Nogués · <em>Geopolitics</em>, 28(5), 2169–2199
+                        <span class="pub-badge">Q1</span>
+                        <span class="pub-badge">FIRST AUTHOR</span>
+                    </p>
+                </article>
+            </div>
+
+            <div class="working-papers">
+                <h3>Manuscripts in Preparation</h3>
+                <div class="wp-list">
+                    <div class="wp-item">
+                        <strong>Kondratov, E.</strong> "Network and Narrative Resilience: Russia's Spanish-Language (Dis)information Operations on Telegram."
+                    </div>
+                    <div class="wp-item">
+                        <strong>Kondratov, E.</strong>, Gaete Salgado, C. & Aira Foix, T. "Beyond Denialism: Analyzing Russia's Dual-Messaging on Climate Change and the Strategic Use of Minority Language Disinformation."
+                    </div>
+                    <div class="wp-item">
+                        <strong>Kondratov, E.</strong>, Simanschi, E. & Johansson-Nogués, E. "Countering Hybrid Interference: EU Diplomacy on High Alert."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2>Policy & Impact</h2>
+            </div>
+
+            <div class="impact-grid">
+                <div class="impact-category">
+                    <h3>Policy Reports</h3>
+                    
+                    <div class="impact-item">
+                        <h4>De(generating) Democracy?</h4>
+                        <p>Testing the Impact of AI Tools on Latino Communities Online</p>
+                        <p><a href="https://www.ddia.org/en/degenerating-democracy" target="_blank">Digital Democracy Institute of the Americas, 2024</a></p>
+                        <p style="margin-top: 4px;"><em>Featured in The Washington Post</em></p>
+                    </div>
+
+                    <div class="impact-item">
+                        <h4>Digital Disruption</h4>
+                        <p>Milei's Online Path to the Presidency</p>
+                        <p><a href="https://www.ddia.org/en/digital-disruption-mileis-online-path-to-the-presidency" target="_blank">Digital Democracy Institute of the Americas, 2024</a></p>
+                    </div>
+
+                    <div class="impact-item">
+                        <h4>Best Practices for Prebunking</h4>
+                        <p>Culturally Competent Messages for U.S. Latinos</p>
+                        <p><a href="https://ddia.org/en/best-practices-for-producing-culturally-competent-prebunking-messages-for-us-latinos" target="_blank">Digital Democracy Institute of the Americas, 2024</a></p>
+                    </div>
+                </div>
+
+                <div class="impact-category">
+                    <h3>Research Consultancies</h3>
+                    
+                    <div class="impact-item">
+                        <h4>Digital Democracy Institute of the Americas</h4>
+                        <p>Led analysis of AI-driven disinformation campaigns and algorithmic manipulation. Designed journalist training on identifying AI-driven disinformation.</p>
+                        <p style="color: var(--muted);">Washington, D.C. · 2023–2024</p>
+                    </div>
+
+                    <div class="impact-item">
+                        <h4>Equis Institute</h4>
+                        <p>Conducted analyses of narrative propagation in disinformation campaigns targeting Latino communities.</p>
+                        <p style="color: var(--muted);">Washington, D.C. · 2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="teaching">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2>Teaching</h2>
+            </div>
+
+            <p class="teaching-intro">
+                Seven academic years of experience teaching international relations and political science at the university level, with a commitment to innovative pedagogy and inclusive learning environments. Recognized with the <strong>Outstanding Professor Award</strong> (Tecnológico de Monterrey, 2017–2018).
+            </p>
+
+            <div class="teaching-grid">
+                <div class="teaching-category">
+                    <h3>Courses Taught</h3>
+                    <ul class="course-list">
+                        <li>Geopolitics and Global Change</li>
+                        <li>International Institutions and Organizations</li>
+                        <li>European Regional Scenario</li>
+                        <li>International Perspectives</li>
+                        <li>Citizenship and Democracy</li>
+                        <li>Citizenship: Political and Social Practices</li>
+                        <li>Global Citizenship: Diversity and Tolerance</li>
+                        <li>Global Cooperation Project <em>(Coordinator)</em></li>
+                    </ul>
+                </div>
+
+                <div class="teaching-category">
+                    <h3>Pedagogical Training</h3>
+                    <div class="training-list">
+                        <div class="training-item">
+                            <strong>Problem/Project-Oriented Learning (POL) Certification</strong>
+                            <span>Tecnológico de Monterrey, 2020</span>
+                        </div>
+                        <div class="training-item">
+                            <strong>Facing History & 4Mat Methodologies</strong>
+                            <span>Tecnológico de Monterrey, 2020</span>
+                        </div>
+                        <div class="training-item">
+                            <strong>Understanding Unconscious Biases</strong>
+                            <span>Tecnológico de Monterrey, 2020</span>
+                        </div>
+                        <div class="training-item">
+                            <strong>Global Learning Certification</strong>
+                            <span>Tecnológico de Monterrey, 2018</span>
+                        </div>
+                        <div class="training-item">
+                            <strong>Service-Learning for Citizenship</strong>
+                            <span>Tecnológico de Monterrey, 2017</span>
+                        </div>
+                        <div class="training-item">
+                            <strong>Competency-Based Education</strong>
+                            <span>Tecnológico de Monterrey, 2017</span>
+                        </div>
+                        <div class="training-item">
+                            <strong>Building Multicultural Competent Classrooms</strong>
+                            <span>Tecnológico de Monterrey, 2016</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cv">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <h2>Curriculum Vitae</h2>
+            </div>
+
+            <div class="cv-timeline">
+                <div class="cv-entry">
+                    <span class="cv-date">2025</span>
+                    <h4>PhD in Politics, Policies and International Relations</h4>
+                    <p>Universitat Autònoma de Barcelona · <em>Cum Laude</em></p>
+                </div>
+
+                <div class="cv-entry">
+                    <span class="cv-date">2025–Present</span>
+                    <h4>Professor</h4>
+                    <p>Department of Political Science, Universitat Autònoma de Barcelona</p>
+                </div>
+
+                <div class="cv-entry">
+                    <span class="cv-date">2023</span>
+                    <h4>Research Stay</h4>
+                    <p>University of Kent, UK · Erasmus+ Jean Monnet Network</p>
+                </div>
+
+                <div class="cv-entry">
+                    <span class="cv-date">2022–2023</span>
+                    <h4>Seminar Facilitator</h4>
+                    <p>Institut Barcelona d'Estudis Internacionals (IBEI)</p>
+                </div>
+
+                <div class="cv-entry">
+                    <span class="cv-date">2015–2021</span>
+                    <h4>Professor of International Relations</h4>
+                    <p>Tecnológico de Monterrey, Mexico</p>
+                    <p><em>Outstanding Professor Award, 2017</em></p>
+                </div>
+
+                <div class="cv-entry">
+                    <span class="cv-date">2012</span>
+                    <h4>MSc Theory & History of International Relations</h4>
+                    <p>London School of Economics · <em>With Merit</em></p>
+                </div>
+
+                <div class="cv-entry">
+                    <span class="cv-date">2010</span>
+                    <h4>BA Political Science</h4>
+                    <p>Fordham University · <em>Cum Laude</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">06</span>
+                <h2>Contact</h2>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Connect</h3>
+                    <div class="contact-links">
+                        <a href="https://orcid.org/0000-0002-5178-8382" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z" />
+                            </svg>
+                            ORCID: 0000-0002-5178-8382
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=hVcv2VIAAAAJ&hl=en" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+                            </svg>
+                            Google Scholar
+                        </a>
+                        <a href="https://www.linkedin.com/in/ykondratov/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
+                            </svg>
+                            LinkedIn
+                        </a>
+                    </div>
+
+                    <div class="contact-form">
+                        <h4>Send a Message</h4>
+                        <form action="https://formspree.io/f/xblnaawj" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            <button type="submit" class="form-submit">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="contact-quote">
+                    Understanding how disinformation exploits democratic vulnerabilities is the first step toward building societal resilience.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2025 Eugene Kondratov. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
